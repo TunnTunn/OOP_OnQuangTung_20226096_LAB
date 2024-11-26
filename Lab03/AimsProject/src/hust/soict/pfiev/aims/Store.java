@@ -50,9 +50,6 @@ public class Store {
         }  
         qtyStore -= 1; 
         System.out.println("The disc has been removed successfully");
-
-        // Add to the store
-        itemsInStore[qtyStore++] = disc;
     }
 
     public void print() {
