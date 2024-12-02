@@ -1,18 +1,18 @@
 package hust.soict.pfiev.aims.media;
 
-import java.util.ArrayList;
 import java.util.List;
+import hust.soict.pfiev.aims.media.Playable;
 
 public class CompactDisc extends Disc implements Playable {
     private String artist;
     private List<Track> tracks;
 
-    public CompactDisc(int id, String title, String category, String director, int length, float cost, String artist, List<Track> tracks)
-    {
-        super(id, title, category, director, length, cost);
-        this.artist = artist;
-        this.tracks = new ArrayList<Track>();
-    }
+    public CompactDisc(String title, String category, String director, int length, float cost, String artist,
+			List<Track> tracks) {
+		super(nbMedia++, title, category, director, length, cost);
+		this.artist = artist;
+		this.tracks = tracks;
+	}
 
     public String getArtist() {
         return artist;
@@ -56,13 +56,22 @@ public class CompactDisc extends Disc implements Playable {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("CD - " + "ID: " + getId() + " - Title: " + getTitle() + " - Category: " + getCategory() + ": " + getCost() + " $");
-		
-		for(Track track : tracks) {
-			sb.append("\n\t" + track.toString());
+		String res = this.getId() + ". Compact Disc (CD): \n";
+		if (this.getTitle() != null) {
+			res += "Title: " + this.getTitle() + "\n";
 		}
-		
-		return sb.toString();
+		if (this.getCategory() != null) {
+			res += "Category: " + this.getCategory() + "\n";
+		}
+		if (this.getDirector() != null) {
+			res += "Director: " + this.getDirector() + "\n";
+		}
+		if (this.getLength() != 0) {
+			res += "Total legnth: " + this.getLength() + "\n";
+		}
+		if (this.getCost() != 0.0f) {
+			res += "Cost: " + this.getCost();
+		}
+		return res;
 	}
 }

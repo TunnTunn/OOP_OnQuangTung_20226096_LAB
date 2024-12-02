@@ -6,9 +6,17 @@ import java.util.List;
 public class Book extends Media{
 	private List<String> authors = new ArrayList<String>();
 	
-	public Book(int id, String title, String category, float cost) {
-		super(id, title, category, cost);
+	public Book(String title, String category, float cost) {
+		super(nbMedia++, title, category, cost);
 		// TODO Auto-generated constructor stub
+	}
+
+	public List<String> getAuthors() {
+		return this.authors;
+	}
+
+	public void setAuthors(List<String> authors) {
+		this.authors = authors;
 	}
 	
 	public void addAuthor(String authorName) {
@@ -31,10 +39,31 @@ public class Book extends Media{
 		}
 	}
 
-	@Override
+	@Override 
 	public String toString() {
-		return "Book" + " - Id: " + getId() + " - Title: " + getTitle() + " - Category: "
-				+ getCategory() + ": " + getCost() + " $";
+		int index = 1;
+		String res = this.getId() + ". Book: ";
+		if (this.getTitle() != null) {
+			res += "Title: " + this.getTitle() + "\n";
+		}
+		if (this.getCategory() != null) {
+			res += "Category: " + this.getCategory() + "\n";
+		}
+		if (this.getAuthors().size() != 0) {
+			res += "Authors name: ";
+			for (String name: this.authors) {
+				res += name;
+				if (index < this.authors.size()) {
+					index++;
+					res += ", ";
+				}
+			}
+			res += "\n";
+		}
+		if (this.getCost() != 0.0f) {
+			res += "Cost: "  + this.getCost();
+		}
+		return res;	
 	}
 	
 }
