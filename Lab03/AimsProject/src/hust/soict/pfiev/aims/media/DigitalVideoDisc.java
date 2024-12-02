@@ -1,5 +1,8 @@
-package hust.soict.pfiev.aims;
-public class DigitalVideoDisc {
+package hust.soict.pfiev.aims.media;
+
+import java.util.Objects;
+
+public class DigitalVideoDisc extends Disc implements Playable {
 
 	private static int nbDigitalVideoDiscs = 0;
 
@@ -13,13 +16,7 @@ public class DigitalVideoDisc {
 
 	// Constructor by by all attributes: title, category, director, length and cost
 	public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
-		this.title = title;
-		this.category = category;
-		this.director = director;
-		this.length = length;
-		this.cost = cost;
-
-		this.id = nbDigitalVideoDiscs++;
+		super(nbMedia++, title, category, director, length, cost);
 	}
 
 	// Constructor by title
@@ -68,5 +65,10 @@ public class DigitalVideoDisc {
 	
 	public boolean isMatching(String title) {
 		return this.title.equals(title);
+	}
+
+	public void play() {
+		System.out.println("Playing DVD: " + this.getTitle());
+		System.out.println("DVD length: " + this.getLength());
 	}
 }

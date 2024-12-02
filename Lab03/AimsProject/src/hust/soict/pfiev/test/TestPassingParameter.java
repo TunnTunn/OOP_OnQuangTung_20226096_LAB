@@ -1,5 +1,5 @@
 package hust.soict.pfiev.test;
-import hust.soict.pfiev.aims.DigitalVideoDisc;
+import hust.soict.pfiev.aims.media.DigitalVideoDisc;
 
 public class TestPassingParameter {
 	public static void main(String[] args) {

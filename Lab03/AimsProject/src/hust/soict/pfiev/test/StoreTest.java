@@ -1,7 +1,7 @@
 package hust.soict.pfiev.test;
 
-import hust.soict.pfiev.aims.Store;
-import hust.soict.pfiev.aims.DigitalVideoDisc;
+import hust.soict.pfiev.aims.media.DigitalVideoDisc;
+import hust.soict.pfiev.aims.store.Store;
 
 public class StoreTest {
     public static void main(String[] args) {
