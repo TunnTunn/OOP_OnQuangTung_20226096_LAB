@@ -2,11 +2,11 @@ package hust.soict.pfiev.aims.media;
 
 import java.util.Objects;
 
-public class Track implements Playable{
+public class Track implements Playable {
 
 	private String title;
 	private int length;
-	
+
 	public Track(String title, int length) {
 		super();
 		this.title = title;
@@ -21,15 +21,10 @@ public class Track implements Playable{
 		return length;
 	}
 
-	@Override
-	public String toString() {
-		return "Track - " + "Title: " + title + " - Length: " + length;
+	public void play() {
+		System.out.println("Playing DVD: " + this.getTitle());
+		System.out.println("DVD length: " + this.getLength());
 	}
-
-    public void play() {
-        System.out.println("Playing DVD: " + this.getTitle());
-        System.out.println("DVD length: " + this.getLength());
-    }
 
 	@Override
 	public boolean equals(Object obj) {
