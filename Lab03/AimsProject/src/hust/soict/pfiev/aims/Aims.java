@@ -1,4 +1,8 @@
 package hust.soict.pfiev.aims;
+
+import hust.soict.pfiev.aims.cart.Cart;
+import hust.soict.pfiev.aims.media.DigitalVideoDisc;
+
 public class Aims {
     public static void main (String [] args) {
 
