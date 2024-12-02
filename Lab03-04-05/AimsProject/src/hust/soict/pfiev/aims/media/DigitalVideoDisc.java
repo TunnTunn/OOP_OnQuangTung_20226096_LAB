@@ -4,16 +4,6 @@ import java.util.Objects;
 
 public class DigitalVideoDisc extends Disc implements Playable {
 
-	private static int nbDigitalVideoDiscs = 0;
-
-	private String title;
-	private String category;
-	private String director;
-	private int length;
-	private float cost;
-
-	private int id;
-
 	// Constructor by by all attributes: title, category, director, length and cost
 	public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
 		super(nbMedia++, title, category, director, length, cost);
@@ -34,32 +24,12 @@ public class DigitalVideoDisc extends Disc implements Playable {
 		this(title, category, director, 0, cost);
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
 	public String getDirector() {
 		return director;
 	}
 
 	public int getLength() {
 		return length;
-	}
-
-	public float getCost() {
-		return cost;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 
 	@Override
@@ -84,7 +54,7 @@ public class DigitalVideoDisc extends Disc implements Playable {
 	}
 
 	public boolean isMatching(String title) {
-		return this.title.equals(title);
+		return this.getTitle().equals(title);
 	}
 
 	public void play() {
