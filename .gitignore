@@ -2,3 +2,5 @@
 *.pdf
 *.bak
 Lab02
+*.classpath
+*.project
