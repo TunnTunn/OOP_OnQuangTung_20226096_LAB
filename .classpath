@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="AimsProject/src"/>
+	<classpathentry kind="src" path="GUIProject/src"/>
+	<classpathentry excluding="Triangle/src/|SortSumAverage/src/|AddMatrix/src/|DaysOfMonth/src/" kind="src" path="OtherProjects/Lab01"/>
+	<classpathentry kind="src" path="OtherProjects/Lab01/AddMatrix/src"/>
+	<classpathentry kind="src" path="OtherProjects/Lab01/DaysOfMonth/src"/>
+	<classpathentry kind="src" path="OtherProjects/Lab01/SortSumAverage/src"/>
+	<classpathentry kind="src" path="OtherProjects/Lab01/Triangle/src"/>
+	<classpathentry kind="output" path="GUIProject/bin"/>
+</classpath>
