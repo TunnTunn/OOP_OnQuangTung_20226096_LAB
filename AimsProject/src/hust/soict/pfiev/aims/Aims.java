@@ -19,7 +19,7 @@ public class Aims {
 		store.addMedia(new DigitalVideoDisc("The wolf of Wall Street"));
 		store.addMedia(new DigitalVideoDisc("The god Father"));
 		store.addMedia(new DigitalVideoDisc("Avenger: Endgame"));
-		store.addMedia(new DigitalVideoDisc("Bust my nuts: Final Chapter"));
+		store.addMedia(new DigitalVideoDisc("Bust my nuts: Final Chapter", "Adults", 5));
 		store.addMedia(new Book("Will he bonk ya in the chocolate factory", "Action", 12));
 		store.addMedia(new DigitalVideoDisc("Puss in cuss"));
 
