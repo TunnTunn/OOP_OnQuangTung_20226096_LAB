@@ -1,9 +1,12 @@
 package hust.soict.pfiev.aims.media;
 
+import java.util.Iterator;
 import java.util.List;
-import hust.soict.pfiev.aims.media.Playable;
+
+import hust.soict.pfiev.aims.exception.PlayerException;
 
 public class CompactDisc extends Disc implements Playable {
+
     private String artist;
     private List<Track> tracks;
 
@@ -20,7 +23,7 @@ public class CompactDisc extends Disc implements Playable {
 
     public void addTrack(Track newTrack) {
         if (tracks.contains(newTrack)) {
-            System.out.println("This track is already on the list");
+            System.out.println("The track is already on the list");
         } else {
             tracks.add(newTrack);
             System.out.println("New track added successfully!");
@@ -29,9 +32,8 @@ public class CompactDisc extends Disc implements Playable {
 
     public void removeTrack(Track otherTrack) {
         if (!tracks.contains(otherTrack)) {
-            System.out.println("This track is not on the list");
+            System.out.println("The track is not on the list");
         } else {
-            System.out.println("Track removed successfully!");
             tracks.remove(otherTrack);
         }
     }
@@ -42,34 +44,42 @@ public class CompactDisc extends Disc implements Playable {
         for (Track track : tracks) {
             result += track.getLength();
         }
+
         return result;
     }
 
-    public void play() {
-        for (int i = 0; i < tracks.size(); ++i) {
-            System.out.println("Track " + i + ": ");
-            tracks.get(i).play();
+    @Override
+    public String play() throws PlayerException {
+        if (this.getLength() > 0) {
+            StringBuilder resBuilder = new StringBuilder();
+
+            for (int i = 0; i < tracks.size(); ++i) {
+                resBuilder.append("Track " + i + ": " + '\n');
+                try {
+                    resBuilder.append(tracks.get(i).play());
+                } catch (PlayerException e) {
+                    throw e;
+                }
+            }
+
+            return resBuilder.toString();
+        } else {
+            throw new PlayerException("ERROR: CD length is non-positive!");
         }
+
     }
 
     @Override
     public String toString() {
-        String res = this.getId() + ". Compact Disc (CD): \n";
-        if (this.getTitle() != null) {
-            res += "Title: " + this.getTitle() + "\n";
+        StringBuilder sb = new StringBuilder();
+        sb.append("CD - " + "ID: " + getId() + " - Title: " + getTitle() + " - Category: " + getCategory() + ": "
+                + getCost() + " $");
+
+        for (Track track : tracks) {
+            sb.append("\n\t" + track.toString());
         }
-        if (this.getCategory() != null) {
-            res += "Category: " + this.getCategory() + "\n";
-        }
-        if (this.getDirector() != null) {
-            res += "Director: " + this.getDirector() + "\n";
-        }
-        if (this.getLength() != 0) {
-            res += "Total legnth: " + this.getLength() + "\n";
-        }
-        if (this.getCost() != 0.0f) {
-            res += "Cost: " + this.getCost();
-        }
-        return res;
+
+        return sb.toString();
     }
+
 }

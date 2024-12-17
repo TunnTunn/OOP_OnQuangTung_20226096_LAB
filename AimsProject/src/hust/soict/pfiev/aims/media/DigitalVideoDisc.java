@@ -2,26 +2,23 @@ package hust.soict.pfiev.aims.media;
 
 import java.util.Objects;
 
-public class DigitalVideoDisc extends Disc implements Playable {
+import hust.soict.pfiev.aims.exception.PlayerException;
 
-	// Constructor by by all attributes: title, category, director, length and cost
+public class DigitalVideoDisc extends Disc implements Playable {
 	public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
 		super(nbMedia++, title, category, director, length, cost);
 	}
 
-	// Constructor by title
-	public DigitalVideoDisc(String title) {
-		this(title, null, null, 0, 0.0f);
+	public DigitalVideoDisc(String title, String category, String director, float cost) {
+		this(title, category, director, 0, cost);
 	}
 
-	// Constructor by title, category and cost
 	public DigitalVideoDisc(String title, String category, float cost) {
 		this(title, category, null, 0, cost);
 	}
 
-	// Constructor by title, category, director and cost
-	public DigitalVideoDisc(String title, String category, String director, float cost) {
-		this(title, category, director, 0, cost);
+	public DigitalVideoDisc(String title) {
+		this(title, null, null, 0, 0.0f);
 	}
 
 	public String getDirector() {
@@ -33,32 +30,46 @@ public class DigitalVideoDisc extends Disc implements Playable {
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(getCategory(), getCost(), director, length, getTitle());
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DigitalVideoDisc other = (DigitalVideoDisc) obj;
+		return Objects.equals(getCategory(), other.getCategory())
+				&& Float.floatToIntBits(getCost()) == Float.floatToIntBits(other.getCost())
+				&& Objects.equals(director, other.director) && length == other.length
+				&& Objects.equals(getTitle(), other.getTitle());
+	}
+
+	@Override
 	public String toString() {
-		String res = this.getId() + ". Digital Video Disc (DVD): \n";
-		if (this.getTitle() != null) {
-			res += "Title: " + this.getTitle() + "\n";
-		}
-		if (this.getCategory() != null) {
-			res += "Category: " + this.getCategory() + "\n";
-		}
-		if (this.getDirector() != null) {
-			res += "Director: " + this.getDirector() + "\n";
-		}
-		if (this.getLength() != 0) {
-			res += "Total legnth: " + this.getLength() + "\n";
-		}
-		if (this.getCost() != 0.0f) {
-			res += "Cost: " + this.getCost();
-		}
-		return res;
+		return "DVD " + " - ID: " + getId() + " - Title: " + getTitle() + " - Category: " + getCategory()
+				+ " - Director: "
+				+ director + " - Length: " + length + ": " + getCost() + " $";
 	}
 
 	public boolean isMatching(String title) {
 		return this.getTitle().equals(title);
 	}
 
-	public void play() {
-		System.out.println("Playing DVD: " + this.getTitle());
-		System.out.println("DVD length: " + this.getLength());
+	@Override
+	public String play() throws PlayerException {
+		if (this.getLength() > 0) {
+			StringBuilder resBuilder = new StringBuilder();
+			resBuilder.append("Playing DVD: " + this.getTitle() + '\n');
+			resBuilder.append("DVD length: " + this.getLength() + '\n');
+
+			return resBuilder.toString();
+		} else {
+			throw new PlayerException("ERROR: DVD length is non-positive");
+		}
 	}
 }

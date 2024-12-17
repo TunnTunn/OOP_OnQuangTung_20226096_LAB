@@ -6,7 +6,6 @@ import java.util.List;
 import hust.soict.pfiev.aims.media.Media;
 
 public class Store {
-
 	private List<Media> itemsInStore = new ArrayList<Media>();
 
 	public void addMedia(Media media) {

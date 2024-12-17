@@ -2,6 +2,8 @@ package hust.soict.pfiev.aims.media;
 
 import java.util.Objects;
 
+import hust.soict.pfiev.aims.exception.PlayerException;
+
 public class Track implements Playable {
 
 	private String title;
@@ -21,9 +23,9 @@ public class Track implements Playable {
 		return length;
 	}
 
-	public void play() {
-		System.out.println("Playing DVD: " + this.getTitle());
-		System.out.println("DVD length: " + this.getLength());
+	@Override
+	public String toString() {
+		return "Track - " + "Title: " + title + " - Length: " + length;
 	}
 
 	@Override
@@ -36,5 +38,18 @@ public class Track implements Playable {
 			return false;
 		Track other = (Track) obj;
 		return length == other.length && Objects.equals(title, other.title);
+	}
+
+	@Override
+	public String play() throws PlayerException {
+		if (this.getLength() > 0) {
+			StringBuilder resBuilder = new StringBuilder();
+			resBuilder.append("Playing DVD: " + this.title + '\n');
+			resBuilder.append("DVD length: " + this.length + '\n');
+
+			return resBuilder.toString();
+		} else {
+			throw new PlayerException("ERROR: Track length is non-positive");
+		}
 	}
 }
